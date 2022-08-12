@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Addpage from './pages/Addpage';
+import Slide from './components/Slide';
 
-const App = () => {
-	return <div>Hello</div>;
-};
+class App extends React.Component {
+	render() {
+		return (
+			<div>
+				<Addpage />
+			</div>
+		);
+	}
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
