@@ -13,6 +13,16 @@ db.on('error', (err) => console.log('Errors :', err));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.options('/', (req, res) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+	res.header(
+		'Access-Control-Allow-Headers',
+		'Content-Type, Authorization, Content-Length, X-Requested-With'
+	);
+	res.send();
+});
+
 app.use('/', postRouter);
 
 const port = 8080;
