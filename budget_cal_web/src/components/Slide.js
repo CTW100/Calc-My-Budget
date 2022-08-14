@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from 'react';
-const axios = require('axios');
+import React from 'react';
+import PostCard from '../components/PostCard';
 
-const Slide = () => {
-	const [result, setResult] = useState(null);
+const Slide = (props) => {
+	const { name, price, goalDate, url, explain } = props;
 
-	useEffect(() => {
-		const fetchPosts = async () => {
-			try {
-				const response = await axios.get(
-					'https://budget-cal-api.run.goorm.io'
-				);
-				console.log(response.data);
-				setResult(JSON.stringify(response.data));
-			} catch (e) {
-				console.log(e);
-			}
-		};
-
-		fetchPosts();
-	}, []);
-
-	return <div>{result}</div>;
+	return (
+		<div>
+			<PostCard
+				name={name}
+				price={price}
+				goalDate={goalDate}
+				url={url}
+				explain={explain}
+			/>
+		</div>
+	);
 };
 
 export default Slide;
