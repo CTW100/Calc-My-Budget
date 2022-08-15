@@ -7,10 +7,11 @@ function Navigation() {
 		<>
 			<Navbar bg='primary' variant='dark'>
 				<Container>
-					<Navbar.Brand href='/'>Navbar</Navbar.Brand>
+					<Navbar.Brand href='/'>Home</Navbar.Brand>
 					<Nav className='me-auto'>
-						<Nav.Link href='/'>Home</Nav.Link>
 						<Nav.Link href='/add-product'>Add Product</Nav.Link>
+						<Nav.Link href='/users/new'>Create Account</Nav.Link>
+						<Nav.Link href='/users/login'>Login</Nav.Link>
 					</Nav>
 				</Container>
 			</Navbar>
