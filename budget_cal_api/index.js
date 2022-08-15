@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const postRouter = require('./routers/postRouter');
+const userRouter = require('./routers/userRouter');
 const app = express();
 
 mongoose.connect('mongodb://127.0.0.1:27017');
@@ -12,7 +14,7 @@ db.on('error', (err) => console.log('Errors :', err));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 app.options('/', (req, res) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -24,6 +26,7 @@ app.options('/', (req, res) => {
 });
 
 app.use('/', postRouter);
+app.use('/users', userRouter);
 
 const port = 8080;
 
