@@ -2,9 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
-const axios = require('axios');
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../_actions/userAction';
 
-function Login() {
+function Login(props) {
+	const dispatch = useDispatch();
+
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -24,11 +27,12 @@ function Login() {
 			password: password,
 		};
 
-		axios
-			.post('https://budget-cal-api.run.goorm.io/users/login', body)
-			.then((results) => {
-				console.log(results);
-			});
+		dispatch(loginUser(body)).then((res) => {
+			if (res.payload.loginSuccess) {
+				alert('환영합니다!');
+				props.history.push('/');
+			}
+		});
 	};
 
 	return (

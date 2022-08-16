@@ -1,10 +1,10 @@
 const User = require('../models/User');
 
 exports.createAccount = (req, res) => {
-	console.log(req.body);
-	User.create(req.body, (err) => {
+	User.create(req.body, (err, user) => {
+		console.log(req.body, user._id);
 		if (err) return res.json(err);
-		res.redirect('/users/login');
+		res.json({ createSuccess: true, userId: user._id });
 	});
 };
 

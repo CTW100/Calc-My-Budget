@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
-const axios = require('axios');
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../_actions/userAction';
 
-function CreateAccount() {
-	const navigate = useNavigate();
+function CreateAccount(props) {
+	const dispatch = useDispatch();
 
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
@@ -32,16 +32,17 @@ function CreateAccount() {
 	const onSubmitHandler = async (e) => {
 		e.preventDefault();
 
-		await axios
-			.post('https://budget-cal-api.run.goorm.io/users/new', {
-				username: username,
-				password: password,
-				name: name,
-				email: email,
-			})
-			.then((e) => {
-				navigate('/users');
-			});
+		let body = {
+			username: username,
+			password: password,
+			name: name,
+			email: email,
+		};
+
+		dispatch(registerUser(body));
+
+		alert('가입이 정상적으로 완료되었습니다.');
+		props.history.push('/users/login');
 	};
 
 	return (
