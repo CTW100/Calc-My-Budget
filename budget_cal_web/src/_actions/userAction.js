@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_USER, LOGIN_USER } from './types';
+import { REGISTER_USER, LOGIN_USER, AUTH_USER } from './types';
 
 export function registerUser(dataToSubmit) {
 	const request = axios
@@ -22,6 +22,17 @@ export function loginUser(dataToSubmit) {
 
 	return {
 		type: LOGIN_USER,
+		payload: request,
+	};
+}
+
+export function authUser() {
+	const request = axios
+		.get('https://budget-cal-api.run.goorm.io/users/auth')
+		.then((response) => response.data);
+
+	return {
+		type: AUTH_USER,
 		payload: request,
 	};
 }

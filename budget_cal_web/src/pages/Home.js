@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slide from '../components/Slide';
+import { withRouter } from 'react-router-dom';
 const axios = require('axios');
 
 const Home = () => {
@@ -39,4 +40,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default withRouter(Home);

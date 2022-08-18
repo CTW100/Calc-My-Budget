@@ -40,3 +40,16 @@ exports.login = (req, res) => {
 		});
 	});
 };
+
+exports.auth = (req, res) => {
+	res.header('Access-Control-Allow-Origin', '*');
+	// 여기까지 미들웨어(auth.js)를 통과해왔다는 얘기는 Authentication이 True라는 말
+	// 클라이언트에게 유저 정보 전달
+	res.status(200).json({
+		_id: req.user._id,
+		username: req.user.username,
+		email: req.user.email,
+		name: req.user.name,
+		isAuth: true,
+	});
+};

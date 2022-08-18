@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 const axios = require('axios');
 
 function AddProduct() {
@@ -98,4 +99,4 @@ function AddProduct() {
 	);
 }
 
-export default AddProduct;
+export default withRouter(AddProduct);

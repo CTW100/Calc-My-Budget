@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../_actions/userAction';
+import { withRouter } from 'react-router-dom';
 
 function CreateAccount(props) {
 	const dispatch = useDispatch();
@@ -92,4 +93,4 @@ function CreateAccount(props) {
 	);
 }
 
-export default CreateAccount;
+export default withRouter(CreateAccount);
