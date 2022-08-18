@@ -18,7 +18,10 @@ export function registerUser(dataToSubmit) {
 export function loginUser(dataToSubmit) {
 	const request = axios
 		.post('https://budget-cal-api.run.goorm.io/users/login', dataToSubmit)
-		.then((response) => response.data);
+		.then((response) => {
+			console.log(response.data);
+			return response.data;
+		});
 
 	return {
 		type: LOGIN_USER,
@@ -29,7 +32,10 @@ export function loginUser(dataToSubmit) {
 export function authUser() {
 	const request = axios
 		.get('https://budget-cal-api.run.goorm.io/users/auth')
-		.then((response) => response.data);
+		.then((response) => {
+			console.log(response.data);
+			return response.data;
+		});
 
 	return {
 		type: AUTH_USER,

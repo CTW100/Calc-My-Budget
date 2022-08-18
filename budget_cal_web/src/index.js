@@ -1,24 +1,32 @@
+// npm modules
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import promiseMiddlerware from 'redux-promise';
+import reduxThunk from 'redux-thunk';
+
+// Personal Components
 import AddProduct from './pages/AddProduct';
 import CreateAccount from './pages/CreateAccount';
 import Login from './pages/LoginPage';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import Welcome from './pages/Welcome';
 import reducer from './_reducers';
 import Auth from './hoc/auth';
-import Welcome from './pages/Welcome';
 
-const store = createStore(reducer); // reducer 인자로 넣어야 함
+const createStoreWidthMiddleware = applyMiddleware(
+	promiseMiddlerware,
+	reduxThunk
+)(createStore);
 
 class App extends React.Component {
 	render() {
 		return (
-			<Provider store={store}>
+			<Provider store={createStoreWidthMiddleware(reducer)}>
 				<BrowserRouter>
 					<Navigation />
 					<Switch>

@@ -9,6 +9,7 @@ exports.createAccount = (req, res) => {
 };
 
 exports.login = (req, res) => {
+	res.header('Access-Control-Allow-Origin', '*');
 	console.log(req.body);
 	// 요청된 username을 데이터베이스에서 있는지 찾는다
 	User.findOne({ username: req.body.username }, (err, user) => {
