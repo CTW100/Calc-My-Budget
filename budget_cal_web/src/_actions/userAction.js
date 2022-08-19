@@ -3,7 +3,9 @@ import { REGISTER_USER, LOGIN_USER, AUTH_USER } from './types';
 
 export function registerUser(dataToSubmit) {
 	const request = axios
-		.post('https://budget-cal-api.run.goorm.io/users/new', dataToSubmit)
+		.post('https://budget-cal-api.run.goorm.io/users/new', dataToSubmit, {
+			withCredentials: true,
+		})
 		.then((response) => response.data);
 	// 서버에 데이터를 보낸 후, 서버에서 온 데이터 저장
 	// ({ loginSuccess: true, userId: user_id })
@@ -17,7 +19,9 @@ export function registerUser(dataToSubmit) {
 
 export function loginUser(dataToSubmit) {
 	const request = axios
-		.post('https://budget-cal-api.run.goorm.io/users/login', dataToSubmit)
+		.post('https://budget-cal-api.run.goorm.io/users/login', dataToSubmit, {
+			withCredentials: true,
+		})
 		.then((response) => {
 			console.log(response.data);
 			return response.data;
@@ -31,7 +35,9 @@ export function loginUser(dataToSubmit) {
 
 export function authUser() {
 	const request = axios
-		.get('https://budget-cal-api.run.goorm.io/users/auth')
+		.get('https://budget-cal-api.run.goorm.io/users/auth', {
+			withCredentials: true,
+		})
 		.then((response) => {
 			console.log(response.data);
 			return response.data;

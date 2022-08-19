@@ -34,7 +34,7 @@ exports.login = (req, res) => {
 
 				// 정상적일 경우 토큰을 쿠키나 로컬스토리지 등에 저장
 				// 쿠키에 저장
-				res.cookie('x_auth', user.token)
+				res.cookie('x_auth', user.token, { secure: true })
 					.status(200)
 					.json({ loginSuccess: true, userId: user._id });
 			});
